@@ -3,11 +3,11 @@
 import { useState, useRef } from "react";
 import Script from "next/script";
 
-const RATE = "4%";
+const RATE = "5%";
 const SPOTS_LEFT = 50;
 
 export default function Page() {
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(true);
   const [firstName, setFirstName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -418,7 +418,7 @@ export default function Page() {
             marginBottom: 40,
             color: "var(--dark)",
           }}>
-            Good questions.
+            Got questions, we&apos;ve got answers.
           </h2>
           {[
             {
@@ -503,8 +503,8 @@ export default function Page() {
       }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <p style={{ fontSize: 13, color: "var(--muted-light)" }}>
-            © 2025 BoothMe. All rights reserved.{" "}
-            <a href="#" style={{ color: "var(--muted)", textDecoration: "none" }}>Privacy Policy</a>
+            © {new Date().getFullYear()} BoothMe. All rights reserved.{" "}
+            <a href="/privacy" style={{ color: "var(--muted)", textDecoration: "none" }}>Privacy Policy</a>
             {" · "}
             <a href="#" style={{ color: "var(--muted)", textDecoration: "none" }}>Unsubscribe</a>
           </p>
@@ -861,6 +861,47 @@ function ThankYouPage({ firstName }: { firstName: string }) {
         </div>
       </section>
 
+      {/* Vendor Portal Callout */}
+      <section style={{ padding: "48px 24px 64px" }}>
+        <div style={{
+          maxWidth: 900,
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: 20,
+        }}>
+          {[
+            {
+              icon: "🏪",
+              title: "Vendors get their own portal too.",
+              desc: "Every vendor you accept gets access to a dedicated portal where they can view their booth assignment, sign their contract, submit payment, and track their status — without emailing you to ask.",
+            },
+            {
+              icon: "📣",
+              title: "Message all your vendors — or just one.",
+              desc: "Send announcements, reminders, or last-minute updates to every vendor at once, or target a specific group. All communication lives in the app, not scattered across your inbox.",
+            },
+          ].map(({ icon, title, desc }) => (
+            <div key={title} style={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: 20,
+              background: "var(--card)",
+              border: "1px solid var(--border)",
+              borderLeft: "4px solid var(--accent)",
+              borderRadius: 10,
+              padding: "28px 24px",
+            }}>
+              <div style={{ fontSize: 24, lineHeight: 1, flexShrink: 0, marginTop: 2 }}>{icon}</div>
+              <div>
+                <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--dark)", marginBottom: 6 }}>{title}</h3>
+                <p style={{ fontSize: 15, color: "var(--muted)", lineHeight: 1.7 }}>{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Dark CTA Bar */}
       <section style={{
         background: "var(--dark)",
@@ -951,7 +992,7 @@ function ThankYouPage({ firstName }: { firstName: string }) {
             marginBottom: 40,
             color: "var(--dark)",
           }}>
-            Good questions.
+            Got questions, we&apos;ve got answers.
           </h2>
           {[
             {
@@ -1014,10 +1055,8 @@ function ThankYouPage({ firstName }: { firstName: string }) {
         textAlign: "center",
       }}>
         <p style={{ fontSize: 13, color: "var(--muted-light)" }}>
-          © 2025 BoothMe. All rights reserved.{" "}
-          <a href="#" style={{ color: "var(--muted)", textDecoration: "none" }}>Privacy Policy</a>
-          {" · "}
-          <a href="#" style={{ color: "var(--muted)", textDecoration: "none" }}>Unsubscribe</a>
+          © {new Date().getFullYear()} BoothMe. All rights reserved.{" "}
+          <a href="/privacy" style={{ color: "var(--muted)", textDecoration: "none" }}>Privacy Policy</a>
         </p>
       </footer>
     </div>
