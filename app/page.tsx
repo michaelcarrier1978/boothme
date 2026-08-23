@@ -2,12 +2,13 @@
 
 import { useState, useRef } from "react";
 import Script from "next/script";
+import Image from "next/image";
 
 const RATE = "5%";
 const SPOTS_LEFT = 50;
 
 export default function Page() {
-  const [submitted, setSubmitted] = useState(true);
+  const [submitted, setSubmitted] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -70,15 +71,16 @@ export default function Page() {
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <div style={{
-              width: 28,
-              height: 28,
-              background: "var(--accent)",
-              borderRadius: 4,
+              width: 36,
+              height: 36,
+              background: "#1a6b47",
+              borderRadius: 6,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              overflow: "hidden",
             }}>
-              <span style={{ color: "white", fontWeight: 700, fontSize: 14 }}>B</span>
+              <Image src="/ticket-office.png" alt="BoothMe" width={24} height={24} style={{ objectFit: "contain" }} />
             </div>
             <span style={{ fontWeight: 600, fontSize: 16, color: "var(--dark)" }}>BoothMe</span>
           </div>
@@ -505,8 +507,6 @@ export default function Page() {
           <p style={{ fontSize: 13, color: "var(--muted-light)" }}>
             © {new Date().getFullYear()} BoothMe. All rights reserved.{" "}
             <a href="/privacy" style={{ color: "var(--muted)", textDecoration: "none" }}>Privacy Policy</a>
-            {" · "}
-            <a href="#" style={{ color: "var(--muted)", textDecoration: "none" }}>Unsubscribe</a>
           </p>
         </div>
       </footer>
@@ -529,14 +529,21 @@ function ThankYouPage({ firstName }: { firstName: string }) {
           alignItems: "center",
           height: 60,
         }}>
-          <span style={{
-            fontFamily: "var(--font-serif), serif",
-            fontSize: 24,
-            color: "var(--dark)",
-            letterSpacing: "-0.01em",
-          }}>
-            BoothMe
-          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{
+              width: 36,
+              height: 36,
+              background: "#1a6b47",
+              borderRadius: 6,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              overflow: "hidden",
+            }}>
+              <Image src="/ticket-office.png" alt="BoothMe" width={24} height={24} style={{ objectFit: "contain" }} />
+            </div>
+            <span style={{ fontWeight: 600, fontSize: 16, color: "var(--dark)" }}>BoothMe</span>
+          </div>
         </div>
       </header>
 

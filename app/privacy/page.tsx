@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function PrivacyPolicy() {
   const year = new Date().getFullYear();
 
@@ -15,15 +17,20 @@ export default function PrivacyPolicy() {
           alignItems: "center",
           height: 60,
         }}>
-          <a href="/" style={{ textDecoration: "none" }}>
-            <span style={{
-              fontFamily: "var(--font-serif), serif",
-              fontSize: 24,
-              color: "var(--dark)",
-              letterSpacing: "-0.01em",
+          <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{
+              width: 36,
+              height: 36,
+              background: "#1a6b47",
+              borderRadius: 6,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              overflow: "hidden",
             }}>
-              BoothMe
-            </span>
+              <Image src="/ticket-office.png" alt="BoothMe" width={24} height={24} style={{ objectFit: "contain" }} />
+            </div>
+            <span style={{ fontWeight: 600, fontSize: 16, color: "var(--dark)" }}>BoothMe</span>
           </a>
         </div>
       </header>
