@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Script from "next/script";
 
 const RATE = "4%";
 const SPOTS_LEFT = 50;
@@ -138,7 +139,7 @@ export default function Page() {
             maxWidth: 560,
             margin: "0 auto 48px",
           }}>
-            Stop losing great vendors to a clunky Google Form. Get the exact application template we use with our highest-performing shows — free.
+            Stop sending vendors to a form that doesn&apos;t reflect your show. Get the exact Google Form template we use — make a copy and you&apos;re ready to take applications.
           </p>
 
           {/* Form Card */}
@@ -256,8 +257,8 @@ export default function Page() {
           textAlign: "center",
         }}>
           {[
-            ["2,400+", "vendors managed"],
-            ["180+", "shows run"],
+            ["1000+", "vendors managed"],
+            ["15+", "shows run"],
             ["4.9★", "average rating"],
           ].map(([num, label]) => (
             <div key={label}>
@@ -284,25 +285,25 @@ export default function Page() {
           </h2>
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gridTemplateColumns: "repeat(2, 1fr)",
             gap: 24,
           }}>
             {[
               {
-                title: "The right questions",
-                desc: "Vetted questions that reveal booth size needs, setup requirements, and red flags — without scaring off good vendors.",
+                title: "Business & contact info",
+                desc: "Captures vendor name, owner, phone, email, address, website, social handles, years in business, and staff count — everything you need before you even reply.",
               },
               {
-                title: "Scoring rubric",
-                desc: "A simple 1–5 framework so you can review 50 applications in an afternoon instead of a week.",
+                title: "Product category & description",
+                desc: "9 preset categories — food & beverage, apparel, art & crafts, health & beauty, home & garden, and more — plus a free-text description field so you know exactly what they're selling.",
               },
               {
-                title: "Acceptance & decline emails",
-                desc: "Copy-paste templates that sound human. Vendors remember how you made them feel.",
+                title: "Booth & logistics requirements",
+                desc: "Booth size preference, power needs (110V, 220V, or water access), tables, chairs, tent status, and special requests — all captured upfront so there's no back-and-forth.",
               },
               {
-                title: "Conditional logic guide",
-                desc: "Set up smart branching so food vendors see different questions than craft vendors.",
+                title: "Insurance & compliance",
+                desc: "Built-in checkboxes for general liability insurance, health permits, and seller's permits — so compliance is part of the application, not an afterthought.",
               },
             ].map(({ title, desc }) => (
               <div key={title} style={{
@@ -379,48 +380,25 @@ export default function Page() {
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <SectionLabel>What organizers say</SectionLabel>
           <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: 24,
+            background: "var(--card)",
+            border: "1px solid var(--border)",
+            borderRadius: 12,
+            padding: "28px 24px",
+            maxWidth: 560,
           }}>
-            {[
-              {
-                quote: "I went from spending 6 hours reviewing applications to 90 minutes. The rubric alone was worth it.",
-                name: "Sarah M.",
-                role: "Founder, Pacific Coast Makers Market",
-              },
-              {
-                quote: "My acceptance rate for quality vendors jumped 40% after switching to this application structure. More info upfront = better decisions.",
-                name: "James K.",
-                role: "Director, Urban Harvest Festival",
-              },
-              {
-                quote: "Vendors actually thank me for the application process now. I didn't know that was possible.",
-                name: "Priya T.",
-                role: "Organizer, Craft + Culture Show",
-              },
-            ].map(({ quote, name, role }) => (
-              <div key={name} style={{
-                background: "var(--card)",
-                border: "1px solid var(--border)",
-                borderRadius: 12,
-                padding: "28px 24px",
-              }}>
-                <p style={{
-                  fontSize: 15,
-                  lineHeight: 1.7,
-                  color: "var(--dark)",
-                  fontStyle: "italic",
-                  marginBottom: 20,
-                }}>
-                  &ldquo;{quote}&rdquo;
-                </p>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: 14, color: "var(--dark)" }}>{name}</div>
-                  <div style={{ fontSize: 13, color: "var(--muted)" }}>{role}</div>
-                </div>
-              </div>
-            ))}
+            <p style={{
+              fontSize: 15,
+              lineHeight: 1.7,
+              color: "var(--dark)",
+              fontStyle: "italic",
+              marginBottom: 20,
+            }}>
+              &ldquo;The application document helped me increase vendor applications by 23%.&rdquo;
+            </p>
+            <div>
+              <div style={{ fontWeight: 600, fontSize: 14, color: "var(--dark)" }}>Michael C.</div>
+              <div style={{ fontSize: 13, color: "var(--muted)" }}>SquatchCon</div>
+            </div>
           </div>
         </div>
       </section>
@@ -449,11 +427,11 @@ export default function Page() {
             },
             {
               q: "What format does the template come in?",
-              a: "You'll get a link to a Google Form template you can copy to your own account, plus a PDF guide with setup instructions and the scoring rubric.",
+              a: "It's a Google Form. You'll get a link in your inbox — click 'Make a copy,' and it's added to your Google Drive. Customize the fields, share your link, and you're ready to take applications.",
             },
             {
               q: "Do I need to use BoothMe to use the template?",
-              a: "Nope. The template works standalone with Google Forms, Typeform, or any form builder. BoothMe just automates everything on top of it.",
+              a: "Nope. The Google Form works on its own — you don't need a BoothMe account to use it. BoothMe just automates everything that happens after the application comes in.",
             },
             {
               q: "What is BoothMe, anyway?",
@@ -559,158 +537,481 @@ function ThankYouPage({ firstName }: { firstName: string }) {
           alignItems: "center",
           height: 60,
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <div style={{
-              width: 28,
-              height: 28,
-              background: "var(--accent)",
-              borderRadius: 4,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}>
-              <span style={{ color: "white", fontWeight: 700, fontSize: 14 }}>B</span>
-            </div>
-            <span style={{ fontWeight: 600, fontSize: 16 }}>BoothMe</span>
-          </div>
+          <span style={{
+            fontFamily: "var(--font-serif), serif",
+            fontSize: 24,
+            color: "var(--dark)",
+            letterSpacing: "-0.01em",
+          }}>
+            BoothMe
+          </span>
         </div>
       </header>
 
-      {/* Confirmation */}
-      <section style={{ padding: "80px 24px 64px", textAlign: "center" }}>
-        <div style={{ maxWidth: 600, margin: "0 auto" }}>
+      {/* Dark Hero */}
+      <section style={{
+        background: "var(--dark)",
+        color: "white",
+        padding: "80px 24px",
+        textAlign: "center",
+      }}>
+        <div style={{ maxWidth: 640, margin: "0 auto" }}>
           <div style={{
-            width: 64,
-            height: 64,
-            background: "rgba(180,85,47,0.1)",
-            border: "2px solid rgba(180,85,47,0.2)",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "0 auto 32px",
-            fontSize: 28,
-            color: "var(--accent)",
+            display: "inline-block",
+            fontFamily: "var(--font-mono), monospace",
+            fontSize: 11,
+            fontWeight: 500,
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: "rgba(180,85,47,0.9)",
+            background: "rgba(180,85,47,0.12)",
+            border: "1px solid rgba(180,85,47,0.3)",
+            borderRadius: 20,
+            padding: "4px 14px",
+            marginBottom: 28,
           }}>
-            ✓
+            Template Sent ✓
           </div>
           <h1 style={{
             fontFamily: "var(--font-serif), serif",
-            fontSize: "clamp(32px, 5vw, 52px)",
+            fontSize: "clamp(36px, 5vw, 56px)",
             fontWeight: 400,
             lineHeight: 1.15,
-            color: "var(--dark)",
             marginBottom: 20,
           }}>
-            It&apos;s on its way,{" "}
+            Your template is on its way,{" "}
             <em>{firstName || "friend"}.</em>
           </h1>
           <p style={{
-            fontSize: 17,
-            color: "var(--muted)",
+            fontSize: 18,
             lineHeight: 1.7,
+            color: "rgba(255,255,255,0.65)",
             maxWidth: 480,
-            margin: "0 auto 16px",
+            margin: "0 auto",
           }}>
-            Check your inbox — the template should arrive in the next couple minutes. Check spam if it doesn&apos;t show up.
+            Check your inbox for the Google Form link — it should arrive in the next couple minutes. Click &ldquo;Make a copy&rdquo; and it&apos;s yours. While you wait, there&apos;s something you should see.
           </p>
         </div>
       </section>
 
-      {/* Upsell */}
-      <section style={{ padding: "0 24px 80px" }}>
-        <div style={{ maxWidth: 640, margin: "0 auto" }}>
-          <div style={{
-            background: "var(--card)",
-            border: "1px solid var(--border)",
-            borderRadius: 16,
-            padding: "40px 36px",
-            boxShadow: "0 4px 24px rgba(30,27,22,0.06)",
+      {/* OTO: Wait — before you go */}
+      <section style={{ padding: "80px 24px" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <SectionLabel>One-time offer</SectionLabel>
+          <h2 style={{
+            fontFamily: "var(--font-serif), serif",
+            fontSize: "clamp(30px, 4vw, 48px)",
+            fontWeight: 400,
+            lineHeight: 1.2,
+            color: "var(--dark)",
+            marginBottom: 24,
           }}>
-            <div style={{
-              display: "inline-block",
-              fontFamily: "var(--font-mono), monospace",
-              fontSize: 11,
-              fontWeight: 500,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "var(--accent)",
-              background: "rgba(180,85,47,0.08)",
-              border: "1px solid rgba(180,85,47,0.2)",
-              borderRadius: 20,
-              padding: "4px 12px",
-              marginBottom: 20,
-            }}>
-              Founding Organizer Offer
-            </div>
-            <h2 style={{
-              fontFamily: "var(--font-serif), serif",
-              fontSize: "clamp(24px, 3.5vw, 36px)",
-              fontWeight: 400,
-              lineHeight: 1.2,
-              color: "var(--dark)",
-              marginBottom: 16,
-            }}>
-              While you wait —<br />
-              <em>want the whole system?</em>
-            </h2>
-            <p style={{
-              fontSize: 16,
-              color: "var(--muted)",
-              lineHeight: 1.7,
-              marginBottom: 24,
-            }}>
-              We&apos;re opening up <strong style={{ color: "var(--dark)" }}>{SPOTS_LEFT} founding organizer spots</strong> for shows that want the full BoothMe setup — applications, contracts, floor plan, and payments — at a{" "}
-              <strong style={{ color: "var(--accent)" }}>flat {RATE} transaction rate.</strong> No monthly fees. Ever.
-            </p>
-            <ul style={{ listStyle: "none", marginBottom: 32 }}>
-              {[
-                "30-minute setup call, we build it with you",
-                `Flat ${RATE} per transaction — no monthly fee`,
-                "Priority support forever",
-                "Lock in before we move to subscription pricing",
-              ].map(item => (
-                <li key={item} style={{
+            Wait — before you go,<br />
+            <em>the template is just the start.</em>
+          </h2>
+          <p style={{
+            fontSize: 17,
+            color: "var(--muted)",
+            lineHeight: 1.8,
+            maxWidth: 620,
+            marginBottom: 48,
+          }}>
+            The template helps you collect the right information. BoothMe handles everything that comes next — approvals, contracts, floor plan, payments, and communication — all from one place built specifically for vendor shows.
+          </p>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 20,
+          }}>
+            {[
+              {
+                title: "Applications & approvals",
+                desc: "Custom vendor intake, one-click approvals, and instant notifications to accepted and waitlisted applicants.",
+              },
+              {
+                title: "Live booth map",
+                desc: "Drag-and-drop floor plan with real-time assignment status. Vendors see their spot. Attendees find which booths to visit. You see the full picture.",
+              },
+              {
+                title: "Stripe payments built in",
+                desc: "Collect booth fees directly. No invoicing back-and-forth, no Venmo requests, automatic receipts.",
+              },
+              {
+                title: "Contracts & e-signatures",
+                desc: "Auto-sent on approval, legally binding, stored permanently. No PDF email chains.",
+              },
+            ].map(({ title, desc }) => (
+              <div key={title} style={{
+                background: "var(--card)",
+                border: "1px solid var(--border)",
+                borderRadius: 12,
+                padding: "24px 20px",
+              }}>
+                <div style={{
+                  width: 32,
+                  height: 32,
+                  background: "rgba(180,85,47,0.1)",
+                  borderRadius: 6,
                   display: "flex",
-                  alignItems: "flex-start",
-                  gap: 10,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--accent)",
+                  fontWeight: 700,
+                  fontSize: 16,
                   marginBottom: 12,
-                  fontSize: 15,
-                  color: "var(--dark)",
-                }}>
-                  <span style={{ color: "var(--accent)", fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
+                }}>✓</div>
+                <h3 style={{ fontSize: 15, fontWeight: 600, color: "var(--dark)", marginBottom: 6 }}>{title}</h3>
+                <p style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.6 }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Live Booth Map Demo */}
+      <section style={{
+        background: "var(--card)",
+        borderTop: "1px solid var(--border)",
+        borderBottom: "1px solid var(--border)",
+        padding: "64px 24px",
+      }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <SectionLabel>Live demo</SectionLabel>
+          <h2 style={{
+            fontFamily: "var(--font-serif), serif",
+            fontSize: "clamp(26px, 3.5vw, 38px)",
+            fontWeight: 400,
+            color: "var(--dark)",
+            marginBottom: 8,
+          }}>
+            This is a live booth map.
+          </h2>
+          <p style={{ fontSize: 15, color: "var(--muted)", lineHeight: 1.6, marginBottom: 32 }}>
+            The booths are dragged over the map and assigned to a vendor. Built on the call.
+          </p>
+          <iframe
+            src="https://app.boothme.io/embed/booth-map?tenant=big-sky-outdoor-expo&event=big-sky-outdoor-expo"
+            width="100%"
+            height="500"
+            style={{ border: "none", borderRadius: 8 }}
+            allowFullScreen
+          />
+        </div>
+      </section>
+
+      {/* Offer Box — dark */}
+      <section style={{
+        background: "var(--dark)",
+        color: "white",
+        padding: "80px 24px",
+      }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <div style={{
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: 24,
+            marginBottom: 48,
+          }}>
+            <div style={{ flex: 1, minWidth: 280 }}>
+              <p style={{
+                fontFamily: "var(--font-mono), monospace",
+                fontSize: 11,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.4)",
+                marginBottom: 12,
+              }}>Founding Organizer Program</p>
+              <h2 style={{
+                fontFamily: "var(--font-serif), serif",
+                fontSize: "clamp(28px, 3.5vw, 44px)",
+                fontWeight: 400,
+                lineHeight: 1.2,
+              }}>
+                Lock in the rate that<br />
+                <em>never changes.</em>
+              </h2>
+            </div>
+            <div style={{
+              background: "rgba(180,85,47,0.15)",
+              border: "1px solid rgba(180,85,47,0.35)",
+              borderRadius: 12,
+              padding: "20px 28px",
+              textAlign: "center",
+              flexShrink: 0,
+            }}>
+              <div style={{ fontSize: 40, fontWeight: 700, color: "var(--accent)", lineHeight: 1 }}>{SPOTS_LEFT}</div>
+              <div style={{
+                fontSize: 11,
+                color: "rgba(255,255,255,0.5)",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                marginTop: 6,
+              }}>spots remaining</div>
+            </div>
+          </div>
+
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 16,
+            marginBottom: 48,
+          }}>
+            {[
+              {
+                title: `Founding rate: ${RATE} flat`,
+                desc: "Every transaction you process through BoothMe, locked in forever at the founding rate.",
+              },
+              {
+                title: "Live booth map setup",
+                desc: "We build your floor plan with you on the call. You leave with a working, drag-and-drop booth map.",
+              },
+              {
+                title: "Stripe payments activated",
+                desc: "Collect booth fees directly. Funds go straight to you — we never hold your money.",
+              },
+              {
+                title: "Shape the roadmap",
+                desc: "Founding organizers get direct input on what we build next. Your shows inform the product.",
+              },
+            ].map(({ title, desc }) => (
+              <div key={title} style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 10,
+                padding: "22px 18px",
+              }}>
+                <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: 8, color: "rgba(255,255,255,0.95)" }}>{title}</h3>
+                <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign: "center" }}>
             <a
-              href="#"
+              href="#book"
               style={{
-                display: "block",
+                display: "inline-block",
                 background: "var(--accent)",
                 color: "white",
-                padding: "15px",
+                padding: "15px 36px",
                 borderRadius: 8,
                 fontSize: 16,
                 fontWeight: 600,
                 textDecoration: "none",
-                textAlign: "center",
                 transition: "background 0.2s",
               }}
               onMouseEnter={e => (e.currentTarget.style.background = "var(--accent-hover)")}
               onMouseLeave={e => (e.currentTarget.style.background = "var(--accent)")}
             >
-              Book a Free Setup Call →
+              Claim My Founding Spot →
             </a>
-            <p style={{
-              fontSize: 12,
-              color: "var(--muted-light)",
-              marginTop: 14,
-              textAlign: "center",
-            }}>
+            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", marginTop: 14 }}>
               Only {SPOTS_LEFT} spots at the founding rate. No obligation on the call.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Pull Quote */}
+      <section style={{ padding: "80px 24px", textAlign: "center" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto" }}>
+          <blockquote style={{
+            fontFamily: "var(--font-serif), serif",
+            fontSize: "clamp(26px, 3.5vw, 42px)",
+            fontWeight: 400,
+            lineHeight: 1.4,
+            color: "var(--dark)",
+            fontStyle: "italic",
+          }}>
+            &ldquo;No slide deck. No canned demo.<br />Just 30 minutes, your actual show,<br />and you leave with everything live.&rdquo;
+          </blockquote>
+        </div>
+      </section>
+
+      {/* Why this, why now */}
+      <section style={{
+        background: "var(--card)",
+        borderTop: "1px solid var(--border)",
+        borderBottom: "1px solid var(--border)",
+        padding: "80px 24px",
+      }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <SectionLabel>Context</SectionLabel>
+          <h2 style={{
+            fontFamily: "var(--font-serif), serif",
+            fontSize: "clamp(28px, 4vw, 44px)",
+            fontWeight: 400,
+            marginBottom: 48,
+            color: "var(--dark)",
+          }}>
+            Why this, why now.
+          </h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 48 }}>
+            <div>
+              <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--dark)", marginBottom: 14 }}>
+                The market is moving fast.
+              </h3>
+              <p style={{ fontSize: 15, color: "var(--muted)", lineHeight: 1.8 }}>
+                Vendors are getting more sophisticated. They expect a professional experience — from the first application through payment confirmation. Shows that deliver it get the best vendors. Shows that don&apos;t get ghosted.
+              </p>
+            </div>
+            <div>
+              <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--dark)", marginBottom: 14 }}>
+                We&apos;re early and intentional about it.
+              </h3>
+              <p style={{ fontSize: 15, color: "var(--muted)", lineHeight: 1.8 }}>
+                We&apos;re not scaling with thousands of customers yet — on purpose. Founding organizers get direct access to us, and their shows shape how the product evolves. That closes when we hit capacity.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Dark CTA Bar */}
+      <section style={{
+        background: "var(--dark)",
+        color: "white",
+        padding: "72px 24px",
+        textAlign: "center",
+      }}>
+        <div style={{ maxWidth: 600, margin: "0 auto" }}>
+          <h2 style={{
+            fontFamily: "var(--font-serif), serif",
+            fontSize: "clamp(28px, 4vw, 44px)",
+            fontWeight: 400,
+            lineHeight: 1.2,
+            marginBottom: 16,
+          }}>
+            Claim your Founding<br />
+            <em>Organizer spot.</em>
+          </h2>
+          <p style={{
+            fontSize: 16,
+            color: "rgba(255,255,255,0.55)",
+            marginBottom: 36,
+          }}>
+            30 minutes. We set up your show together. You lock in {RATE} forever.
+          </p>
+          <a
+            href="#book"
+            style={{
+              display: "inline-block",
+              background: "var(--accent)",
+              color: "white",
+              padding: "15px 36px",
+              borderRadius: 8,
+              fontSize: 16,
+              fontWeight: 600,
+              textDecoration: "none",
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.background = "var(--accent-hover)")}
+            onMouseLeave={e => (e.currentTarget.style.background = "var(--accent)")}
+          >
+            Book a Free Setup Call →
+          </a>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", marginTop: 16 }}>
+            Only {SPOTS_LEFT} spots at the founding rate. No obligation on the call.
+          </p>
+        </div>
+      </section>
+
+      {/* Calendly Booking */}
+      <section id="book" style={{ padding: "64px 24px 0" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", paddingBottom: 32 }}>
+          <SectionLabel>Book your call</SectionLabel>
+          <h2 style={{
+            fontFamily: "var(--font-serif), serif",
+            fontSize: "clamp(26px, 3.5vw, 38px)",
+            fontWeight: 400,
+            color: "var(--dark)",
+            marginBottom: 8,
+          }}>
+            Pick a time that works for you.
+          </h2>
+          <p style={{ fontSize: 15, color: "var(--muted)", lineHeight: 1.6 }}>
+            30 minutes. We set up your show live on the call.
+          </p>
+        </div>
+        <div
+          className="calendly-inline-widget"
+          data-url="https://calendly.com/mjcsolutions-io/30min"
+          style={{ minWidth: 320, height: 700 }}
+        />
+        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+        <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
+      </section>
+
+      {/* FAQ */}
+      <section style={{
+        padding: "64px 24px 80px",
+        background: "var(--card)",
+        borderTop: "1px solid var(--border)",
+      }}>
+        <div style={{ maxWidth: 640, margin: "0 auto" }}>
+          <SectionLabel>FAQ</SectionLabel>
+          <h2 style={{
+            fontFamily: "var(--font-serif), serif",
+            fontSize: "clamp(24px, 3vw, 36px)",
+            fontWeight: 400,
+            marginBottom: 40,
+            color: "var(--dark)",
+          }}>
+            Good questions.
+          </h2>
+          {[
+            {
+              q: "What exactly happens on the setup call?",
+              a: "We spend 30 minutes building your show inside BoothMe — live, on the call. That means your application form, booth map, payment setup, and contract template. You leave with a working system, not a demo.",
+            },
+            {
+              q: `What does the ${RATE} founding rate actually mean?`,
+              a: `${RATE} per transaction, locked in forever. When we move to subscription pricing — which we will — you keep the founding rate. No renegotiation, no grandfathering clause, no annual reviews.`,
+            },
+            {
+              q: "Is there a monthly fee?",
+              a: `No. Founding organizers pay nothing until they process their first payment through BoothMe. Then it's a flat ${RATE} on what you collect. That's it.`,
+            },
+            {
+              q: "What if my show is small?",
+              a: "The platform scales down as well as up. We've set up shows with 12 vendors and shows with 200+. The 30-minute call works either way.",
+            },
+            {
+              q: "What payment processor do you use?",
+              a: "Stripe. You connect your own Stripe account so funds go directly to you — we never hold your money.",
+            },
+            {
+              q: "Can I cancel if it doesn't work out?",
+              a: "Yes. No contracts, no cancellation fees. If BoothMe isn't the right fit after the call, you walk away.",
+            },
+          ].map(({ q, a }) => (
+            <details key={q} style={{
+              borderBottom: "1px solid var(--border)",
+              padding: "20px 0",
+            }}>
+              <summary style={{
+                fontSize: 16,
+                fontWeight: 600,
+                color: "var(--dark)",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}>
+                {q}
+                <span style={{ fontSize: 20, color: "var(--muted)", marginLeft: 16, flexShrink: 0 }}>+</span>
+              </summary>
+              <p style={{
+                fontSize: 15,
+                lineHeight: 1.7,
+                color: "var(--muted)",
+                marginTop: 14,
+              }}>
+                {a}
+              </p>
+            </details>
+          ))}
         </div>
       </section>
 
