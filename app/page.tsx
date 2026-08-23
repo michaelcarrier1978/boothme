@@ -257,9 +257,9 @@ export default function Page() {
           textAlign: "center",
         }}>
           {[
-            ["1000+", "vendors managed"],
-            ["15+", "shows run"],
-            ["4.9★", "average rating"],
+            ["6", "sections covering every detail you need"],
+            ["30+", "fields — nothing left to follow up on"],
+            ["23%", "more applications reported by organizers"],
           ].map(([num, label]) => (
             <div key={label}>
               <div style={{ fontSize: 28, fontWeight: 700, color: "var(--dark)" }}>{num}</div>
@@ -393,7 +393,7 @@ export default function Page() {
               fontStyle: "italic",
               marginBottom: 20,
             }}>
-              &ldquo;The application document helped me increase vendor applications by 23%.&rdquo;
+              &ldquo;The application document helped me increase vendor applications by 33%.&rdquo;
             </p>
             <div>
               <div style={{ fontWeight: 600, fontSize: 14, color: "var(--dark)" }}>Michael C.</div>
