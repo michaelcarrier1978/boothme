@@ -232,8 +232,8 @@ export default function Page() {
                 {loading ? "Sending…" : "Send Me the Template →"}
               </button>
             </form>
-            <p style={{ fontSize: 12, color: "var(--muted-light)", marginTop: 16 }}>
-              No spam. Unsubscribe anytime.
+            <p style={{ fontSize: 10, color: "var(--muted-light)", marginTop: 16, lineHeight: 1.6 }}>
+              By clicking the button above, you agree to receive email marketing from BoothMe.<br />No spam, unsubscribe anytime.
             </p>
           </div>
         </div>
@@ -428,15 +428,7 @@ export default function Page() {
             {
               q: "What format does the template come in?",
               a: "It's a Google Form. You'll get a link in your inbox — click 'Make a copy,' and it's added to your Google Drive. Customize the fields, share your link, and you're ready to take applications.",
-            },
-            {
-              q: "Do I need to use BoothMe to use the template?",
-              a: "Nope. The Google Form works on its own — you don't need a BoothMe account to use it. BoothMe just automates everything that happens after the application comes in.",
-            },
-            {
-              q: "What is BoothMe, anyway?",
-              a: "BoothMe is vendor show management software — applications, contracts, payments, floor plan, and communication in one place. The template gives you a taste of how we think about vendor experience.",
-            },
+            }
           ].map(({ q, a }) => (
             <details key={q} style={{
               borderBottom: "1px solid var(--border)",
