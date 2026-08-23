@@ -8,7 +8,7 @@ const RATE = "5%";
 const SPOTS_LEFT = 50;
 
 export default function Page() {
-  const [submitted, setSubmitted] = useState(false );
+  const [submitted, setSubmitted] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -695,27 +695,6 @@ function ThankYouPage({ firstName }: { firstName: string }) {
             style={{ border: "none", borderRadius: 8 }}
             allowFullScreen
           />
-          <div style={{
-            marginTop: 32,
-            background: "var(--bg)",
-            border: "1px solid var(--border)",
-            borderRadius: 12,
-            padding: "24px 28px",
-          }}>
-            <p style={{
-              fontSize: 16,
-              lineHeight: 1.75,
-              color: "var(--dark)",
-              fontStyle: "italic",
-              marginBottom: 16,
-            }}>
-              &ldquo;BoothMe has saved me countless hours from not having to track down vendors and collecting payments while staying organized throughout our entire event process.&rdquo;
-            </p>
-            <div>
-              <div style={{ fontWeight: 600, fontSize: 14, color: "var(--dark)" }}>Jenny D.</div>
-              <div style={{ fontSize: 13, color: "var(--muted)" }}>Big Sky Outdoor Expo</div>
-            </div>
-          </div>
         </div>
       </section>
 
