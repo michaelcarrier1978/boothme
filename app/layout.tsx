@@ -1,32 +1,48 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
+import { Archivo } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
-const ibmPlexSans = IBM_Plex_Sans({
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-ibm-plex-sans",
+  weight: ["400", "600", "800"],
+  variable: "--font-archivo",
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-ibm-plex-mono",
-});
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://boothme.app");
 
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-instrument-serif",
-});
+const title = "BoothMe — Vendor Show Management, Simplified";
+const description =
+  "The all-in-one platform for event organizers. Manage applications, vendors, and booth assignments — without the spreadsheet chaos.";
 
 export const metadata: Metadata = {
-  title: "BoothMe — Free Vendor Application Template",
-  description: "Get a free vendor application template that actually works. Stop losing applicants to clunky forms.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
   icons: {
     icon: "/ticket-office.png",
+  },
+  openGraph: {
+    title,
+    description,
+    type: "website",
+    url: "/",
+    siteName: "BoothMe",
+    images: [
+      {
+        url: "/event-owner-map.gif",
+        width: 2230,
+        height: 1254,
+        alt: "BoothMe — drag vendors onto a live floor plan as they apply",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/event-owner-map.gif"],
   },
 };
 
@@ -36,8 +52,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${ibmPlexSans.variable} ${ibmPlexMono.variable} ${instrumentSerif.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={archivo.variable}>
+      <head>
+        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+      </head>
+      <body>
+        {children}
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1593221715528386&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
+      </body>
       <Script src="https://t.contentsquare.net/uxa/387747c8d7a80.js" strategy="afterInteractive" />
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-MWZLTLDJ57" strategy="afterInteractive" />
       <Script id="google-analytics" strategy="afterInteractive">
@@ -62,15 +92,6 @@ export default function RootLayout({
           fbq('track', 'PageView');
         `}
       </Script>
-      <noscript>
-        <img
-          height="1"
-          width="1"
-          style={{ display: "none" }}
-          src="https://www.facebook.com/tr?id=1593221715528386&ev=PageView&noscript=1"
-          alt=""
-        />
-      </noscript>
     </html>
   );
 }

@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { name, email } = await req.json();
+  const { email, name } = await req.json();
 
-  if (!name || !email) {
-    return NextResponse.json({ error: "Name and email are required." }, { status: 400 });
+  if (!email) {
+    return NextResponse.json({ error: "Email is required." }, { status: 400 });
   }
 
   const apiKey = process.env.CONVERTKIT_API_KEY;
@@ -14,18 +14,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Server configuration error." }, { status: 500 });
   }
 
+  const firstName = name ? name.split(" ")[0] : email.split("@")[0];
+
   const res = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       api_key: apiKey,
       email,
-      first_name: name.split(" ")[0],
+      first_name: firstName,
     }),
   });
 
   if (!res.ok) {
-    const data = await res.json();
     return NextResponse.json({ error: "Failed to subscribe. Try again." }, { status: 500 });
   }
 

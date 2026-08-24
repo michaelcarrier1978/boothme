@@ -1,17 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #F7F4EC;
-  --dark: #1E1B16;
-  --accent: #B4552F;
-  --accent-hover: #8E4023;
-  --card: #FFFDF7;
-  --border: #E2DCCD;
-  --muted: #5A5449;
-  --muted-light: #7A7263;
-  --font-sans: var(--font-ibm-plex-sans);
-  --font-mono: var(--font-ibm-plex-mono);
-  --font-serif: var(--font-instrument-serif);
+  --bg: #f3f2f2;
+  --surface: #eae9e9;
+  --dark: #201e1d;
+  --accent: #ec3013;
+  --accent-hover: #c02710;
+  --divider: rgba(32, 30, 29, 0.4);
+  --muted: rgba(32, 30, 29, 0.55);
+  --font-heading: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --font-body: var(--font-archivo), "Archivo", system-ui, sans-serif;
 }
 
 * {
@@ -23,7 +21,7 @@
 body {
   background: var(--bg);
   color: var(--dark);
-  font-family: var(--font-sans), 'IBM Plex Sans', system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -36,15 +34,4 @@ details summary {
 
 details summary::-webkit-details-marker {
   display: none;
-}
-
-.grid-2col {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-@media (max-width: 640px) {
-  .grid-2col {
-    grid-template-columns: 1fr;
-  }
 }
