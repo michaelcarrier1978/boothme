@@ -285,9 +285,7 @@ export default function Page() {
             Everything your application<br />
             <em>was missing.</em>
           </h2>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
+          <div className="grid-2col" style={{
             gap: 24,
           }}>
             {[
@@ -617,9 +615,7 @@ function ThankYouPage({ firstName }: { firstName: string }) {
           }}>
             The template helps you collect the right information. BoothMe handles everything that comes next — approvals, contracts, floor plan, payments, and communication — all from one place built specifically for vendor shows.
           </p>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
+          <div className="grid-2col" style={{
             gap: 20,
           }}>
             {[
@@ -751,9 +747,7 @@ function ThankYouPage({ firstName }: { firstName: string }) {
             </div>
           </div>
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
+          <div className="grid-2col" style={{
             gap: 16,
             marginBottom: 48,
           }}>
@@ -847,7 +841,7 @@ function ThankYouPage({ firstName }: { firstName: string }) {
           }}>
             Why this, why now.
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 48 }}>
+          <div className="grid-2col" style={{ gap: 48 }}>
             <div>
               <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--dark)", marginBottom: 14 }}>
                 The market is moving fast.
@@ -870,11 +864,9 @@ function ThankYouPage({ firstName }: { firstName: string }) {
 
       {/* Vendor Portal Callout */}
       <section style={{ padding: "48px 24px 64px" }}>
-        <div style={{
+        <div className="grid-2col" style={{
           maxWidth: 900,
           margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
           gap: 20,
         }}>
           {[
