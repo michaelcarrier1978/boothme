@@ -38,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${ibmPlexSans.variable} ${ibmPlexMono.variable} ${instrumentSerif.variable}`}>
       <body>{children}</body>
+      <Script src="https://t.contentsquare.net/uxa/387747c8d7a80.js" strategy="afterInteractive" />
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-MWZLTLDJ57" strategy="afterInteractive" />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
