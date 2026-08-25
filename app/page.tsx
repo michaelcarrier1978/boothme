@@ -1006,11 +1006,42 @@ function ThankYouPage() {
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
+declare global {
+  interface Window { fbq?: (...args: unknown[]) => void; }
+}
+
+function capi(event_name: string, event_id: string, email?: string) {
+  fetch("/api/capi", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ event_name, event_id, email }),
+  }).catch(() => {});
+}
+
 export default function Page() {
   const [submitted, setSubmitted] = useState(false);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // PageView CAPI on mount
+  React.useEffect(() => {
+    const id = `pv_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    capi("PageView", id);
+  }, []);
+
+  // Calendly Schedule listener (active after form submit)
+  React.useEffect(() => {
+    if (!submitted) return;
+    const handler = (e: MessageEvent) => {
+      if (e.data?.event !== "calendly.event_scheduled") return;
+      const id = `sched_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+      window.fbq?.("track", "Schedule", {}, { eventID: id });
+      capi("Schedule", id);
+    };
+    window.addEventListener("message", handler);
+    return () => window.removeEventListener("message", handler);
+  }, [submitted]);
 
   async function handleSubmit(e: { preventDefault(): void }) {
     e.preventDefault();
@@ -1028,6 +1059,8 @@ export default function Page() {
       if (!res.ok) {
         setError(data.error || "Something went wrong. Please try again.");
       } else {
+        // Deduplicate browser Lead against CAPI Lead using the returned event ID
+        window.fbq?.("track", "Lead", { content_name: "waitlist" }, { eventID: data.fb_event_id });
         setSubmitted(true);
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
