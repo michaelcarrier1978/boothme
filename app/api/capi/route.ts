@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   const accessToken = process.env.FACEBOOK_ACCESS_TOKEN;
   if (!accessToken) return NextResponse.json({ ok: true });
 
-  const { event_name, event_id, email } = await req.json();
+  const { event_name, event_id, email, external_id, fbp, fbc } = await req.json();
 
   const clientIp =
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
@@ -24,7 +24,10 @@ export async function POST(req: NextRequest) {
     client_ip_address: clientIp,
     client_user_agent: userAgent,
   };
-  if (email) userData.em = [sha256(email)];
+  if (email)       userData.em          = [sha256(email)];
+  if (external_id) userData.external_id = [sha256(external_id)];
+  if (fbp)         userData.fbp         = fbp;   // sent as-is per Meta spec
+  if (fbc)         userData.fbc         = fbc;   // sent as-is per Meta spec
 
   await fetch(`https://graph.facebook.com/v21.0/${PIXEL_ID}/events`, {
     method: "POST",

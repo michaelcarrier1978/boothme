@@ -1010,11 +1010,24 @@ declare global {
   interface Window { fbq?: (...args: unknown[]) => void; }
 }
 
-function capi(event_name: string, event_id: string, email?: string) {
+function getCookie(name: string) {
+  return document.cookie.split("; ").find(r => r.startsWith(name + "="))?.split("=")[1] ?? "";
+}
+
+function getExternalId() {
+  const key = "bm_eid";
+  let id = localStorage.getItem(key);
+  if (!id) { id = crypto.randomUUID(); localStorage.setItem(key, id); }
+  return id;
+}
+
+interface CapiOptions { email?: string; external_id?: string; fbp?: string; fbc?: string; }
+
+function capi(event_name: string, event_id: string, opts: CapiOptions = {}) {
   fetch("/api/capi", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ event_name, event_id, email }),
+    body: JSON.stringify({ event_name, event_id, ...opts }),
   }).catch(() => {});
 }
 
@@ -1027,7 +1040,11 @@ export default function Page() {
   // PageView CAPI on mount
   React.useEffect(() => {
     const id = `pv_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-    capi("PageView", id);
+    capi("PageView", id, {
+      external_id: getExternalId(),
+      fbp: getCookie("_fbp"),
+      fbc: getCookie("_fbc"),
+    });
   }, []);
 
   // Calendly Schedule listener (active after form submit)
