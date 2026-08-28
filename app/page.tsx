@@ -1076,8 +1076,6 @@ export default function Page() {
       if (!res.ok) {
         setError(data.error || "Something went wrong. Please try again.");
       } else {
-        // Deduplicate browser Lead against CAPI Lead using the returned event ID
-        window.fbq?.("track", "Lead", { content_name: "waitlist" }, { eventID: data.fb_event_id });
         setSubmitted(true);
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
